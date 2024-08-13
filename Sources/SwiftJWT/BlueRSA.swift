@@ -15,8 +15,6 @@
  **/
 
 import CryptorRSA
-private import LoggerAPI
-
 import Foundation
 
 class BlueRSA: SignerAlgorithm, VerifierAlgorithm {
@@ -46,7 +44,7 @@ class BlueRSA: SignerAlgorithm, VerifierAlgorithm {
     
     func sign(_ data: Data) throws -> Data {
         guard #available(macOS 10.12, iOS 10.3, tvOS 12.0, watchOS 3.3, *) else {
-            Log.error("macOS 10.12.0 (Sierra) or higher or iOS 10.0 or higher is required by CryptorRSA")
+            print("macOS 10.12.0 (Sierra) or higher or iOS 10.0 or higher is required by CryptorRSA")
             throw JWTError.osVersionToLow
         }
         // Convert PEM format to DER
@@ -121,7 +119,7 @@ class BlueRSA: SignerAlgorithm, VerifierAlgorithm {
             return try myPlaintext.verify(with: publicKey, signature: signedData, algorithm: algorithm, usePSS: usePSS)
         }
         catch {
-            Log.error("Verification failed: \(error)") 
+            print("Verification failed: \(error)") 
             return false
         }
     }

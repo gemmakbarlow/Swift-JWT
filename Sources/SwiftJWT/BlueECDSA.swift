@@ -15,7 +15,6 @@
  **/
 
 import CryptorECC
-private import LoggerAPI
 import Foundation
 
 // Class for ECDSA signing using BlueECC
@@ -103,7 +102,7 @@ class BlueECVerifier: VerifierAlgorithm {
             return signature.verify(plaintext: data, using: publicKey)
         }
         catch {
-            Log.error("Verification failed: \(error)")
+            print("Verification failed: \(error)")
             return false
         }
     }
